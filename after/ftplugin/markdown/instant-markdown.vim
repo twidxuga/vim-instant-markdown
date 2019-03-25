@@ -20,7 +20,7 @@ if !exists('g:instant_markdown_allow_external_content')
 endif
 
 if !exists('g:instant_markdown_serve_folder_tree')
-    let g:instant_markdown_serve_folder_tree = 0
+    let g:instant_markdown_serve_folder_tree = 1
 endif
 
 " # Utility Functions
@@ -110,7 +110,17 @@ function! s:killDaemon()
 endfu
 
 function! s:bufGetLines(bufnr)
-  return getbufline(a:bufnr, 1, "$")
+  "return getbufline(a:bufnr, 1, "$")
+  let lines = getbufline(a:bufnr, 1, "$")
+
+  " inject row marker
+  let row_num = line(".") - 1
+  if empty(matchstr(lines[row_num], "^$$.*")) 
+    " only inject marker if not typing a formula in the current line 
+    let lines[row_num] = join([lines[row_num], '<a name="#marker" id="marker"></a>'], ' ')
+  endif
+
+  return lines
 endfu
 
 " I really, really hope there's a better way to do this.
