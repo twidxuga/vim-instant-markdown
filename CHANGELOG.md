@@ -51,4 +51,13 @@ Changes proposed by @twidxuga:
 - Fixed issue (at least with Neovim and Linux) by which environment variables set in the vim plugin were not passed onto the instant-markdown-d server.
 - Re-factored all CSS and font files under the sames folder `imd_static` (Perhaps the Katex fonts and its CSS could be referenced from the node_modules directory in future, as an improvement)
 
+### 0.0.10 (25-03-2019)
+Changes proposed by @twidxuga:
+
+- Enabled automatic scrolling to current edit position, even when editing formulas (with Katex)
+- Set default to allow serving files from the working folder tree, in other words `g:instant_markdown_serve_folder_tree` now is set to 0 by default.
+
+
+
+
 
